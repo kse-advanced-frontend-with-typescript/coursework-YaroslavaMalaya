@@ -52,3 +52,4 @@ export default [...fixupConfigRules(compat.extends(
         "@typescript-eslint/explicit-module-boundary-types": "off",
     },
 }];
+
