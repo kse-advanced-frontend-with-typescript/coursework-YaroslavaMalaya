@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './style.css';
+import { LogoTitle } from './Logo.style';
 
 export const Logo = ()=> {
-    return <div className={styles.logo}>Snaporia</div>;
+    return <LogoTitle>Snaporia</LogoTitle>;
 };
