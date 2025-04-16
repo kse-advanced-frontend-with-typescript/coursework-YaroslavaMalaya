@@ -44,23 +44,23 @@ export const Form: React.FC<FormProps> = ({ formName, onSubmit }) => {
     };
 
     return (
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer onSubmit={handleSubmit} name={formName}>
             <Title>{formContent.title}</Title>
             <InputsWrapper>
-            <Label>{formContent.firstInput}</Label>
-            <Input
-                value={firstInput}
-                placeholder={formContent.firstInput.slice(0, -1).toLowerCase()}
-                onChange={(event) => setFirstInput(event.target.value)}
-                type="text"
-            />
-            <Label>{formContent.secondInput}</Label>
-            <Input
-                value={secondInput}
-                placeholder={formContent.secondInput.slice(0, -1).toLowerCase()}
-                onChange={(event) => setSecondInput(event.target.value)}
-                type={formName === 'login' ? 'password' : 'text'}
-            />
+                <Label>{formContent.firstInput}</Label>
+                <Input
+                    value={firstInput}
+                    placeholder={formContent.firstInput.slice(0, -1).toLowerCase()}
+                    onChange={(event) => setFirstInput(event.target.value)}
+                    type="text"
+                />
+                <Label>{formContent.secondInput}</Label>
+                <Input
+                    value={secondInput}
+                    placeholder={formContent.secondInput.slice(0, -1).toLowerCase()}
+                    onChange={(event) => setSecondInput(event.target.value)}
+                    type={formName === 'login' ? 'password' : 'text'}
+                />
             </InputsWrapper>
             <Button
                 text={formContent.buttonText}

@@ -5,9 +5,9 @@ export const SearchContainer = styled.div`
     max-width: 343px;
     display: flex;
     align-items: center;
-    border: 2px solid #15FF00;
+    border: 1.5px solid #15FF00;
     border-radius: 999px;
-    padding: 12px 16px;
+    padding: 8px 16px;
     background-color: transparent;
 `;
 

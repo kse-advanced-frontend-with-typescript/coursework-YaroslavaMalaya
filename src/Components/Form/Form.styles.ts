@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.div<{ name: string }>`
     width: 100%;
     max-width: 343px;
     padding: 24px;
-    border: 2px solid #15ff00;
+    border: ${({name}) => (name == 'login' ? '2px solid #15ff00' : '2px solid #bffaba')};
     border-radius: 11px;
     background-color: rgba(0, 0, 0, 0.43);
     display: flex;

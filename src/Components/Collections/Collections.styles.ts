@@ -29,3 +29,12 @@ export const ButtonsWrapper = styled.div`
 export const ButtonAlign = styled.div<{ alignRight?: boolean }>`
     align-self: ${({ alignRight }) => (alignRight ? 'flex-end' : 'flex-start')};
 `;
+
+export const Message = styled.p`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(191, 250, 186, 0.47);
+    text-align: center;
+    margin: 0;
+`;

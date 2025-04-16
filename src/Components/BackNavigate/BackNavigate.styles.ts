@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const BackContainer = styled.button`
     display: flex;
     align-items: center;
+    
     gap: 5px;
     background: transparent;
     border: none;

@@ -6,12 +6,7 @@ import {
     Image,
     DeleteIcon
 } from './PhotosSection.styles';
-
-type Photo = {
-    id: number;
-    url: string;
-    alt?: string;
-};
+import { Photo } from '../../Modules/API/types';
 
 type PhotosSectionProps = {
     photos: Photo[];
@@ -36,7 +31,7 @@ export const PhotosSection: React.FC<PhotosSectionProps> = ({ photos, onPhotoCli
                 {photos.map(photo => (
                     <ImageWrapper key={photo.id}>
                         <Image
-                            src={photo.url}
+                            src={photo.src.large}
                             alt={photo.alt || 'Photo'}
                             size={getRandomSize()}
                             onClick={() => onPhotoClick(photo.id)}

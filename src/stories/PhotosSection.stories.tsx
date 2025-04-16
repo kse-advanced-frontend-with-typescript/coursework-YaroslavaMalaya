@@ -11,18 +11,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const examplePhotos = [
-    { id: 1, url: '/pictures/photos/example1.png' },
-    { id: 2, url: '/pictures/photos/example2.png' },
-    { id: 3, url: '/pictures/photos/example3.png' },
-    { id: 4, url: '/pictures/photos/example4.png' },
-    { id: 5, url: '/pictures/photos/example5.png' },
-    { id: 6, url: '/pictures/photos/example6.png' },
-    { id: 7, url: '/pictures/photos/example3.png' },
-    { id: 8, url: '/pictures/photos/example4.png' },
-    { id: 9, url: '/pictures/photos/example5.png' },
-    { id: 10, url: '/pictures/photos/example6.png' },
-    { id: 11, url: '/pictures/photos/example1.png' },
-    { id: 12, url: '/pictures/photos/example2.png' },
+    { id: 1, src: { large: '/pictures/photos/example1.png' }, alt: 'Example 1' },
+    { id: 2, src: { large: '/pictures/photos/example2.png' }, alt: 'Example 2' },
+    { id: 3, src: { large: '/pictures/photos/example3.png' }, alt: 'Example 3' },
+    { id: 4, src: { large: '/pictures/photos/example4.png' }, alt: 'Example 4' },
+    { id: 5, src: { large: '/pictures/photos/example5.png' }, alt: 'Example 5' },
+    { id: 6, src: { large: '/pictures/photos/example6.png' }, alt: 'Example 6' },
+    { id: 7, src: { large: '/pictures/photos/example3.png' }, alt: 'Example 7' },
+    { id: 8, src: { large: '/pictures/photos/example4.png' }, alt: 'Example 8' },
+    { id: 9, src: { large: '/pictures/photos/example5.png' }, alt: 'Example 9' },
+    { id: 10, src: { large: '/pictures/photos/example6.png' }, alt: 'Example 10' },
+    { id: 11, src: { large: '/pictures/photos/example1.png' }, alt: 'Example 11' },
+    { id: 12, src: { large: '/pictures/photos/example2.png' }, alt: 'Example 12' },
 ];
 
 export const SearchPhotoSection: Story = {

@@ -7,5 +7,4 @@ export const CategoryContainer = styled.div`
     gap: 16px;
     justify-content: center;
     align-items: center;
-    margin-top: 24px;
 `;

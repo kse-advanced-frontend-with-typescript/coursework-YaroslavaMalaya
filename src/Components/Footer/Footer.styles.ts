@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const FooterContainer = styled.footer`
     width: 100%;
-    max-width: 402px;
+    max-width: 600px;
     display: flex;
     justify-content: space-between;
     align-items: center;

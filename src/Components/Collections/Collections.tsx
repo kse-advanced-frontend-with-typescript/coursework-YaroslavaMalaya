@@ -3,7 +3,8 @@ import {
     CollectionsContainer,
     Title,
     ButtonsWrapper,
-    ButtonAlign
+    ButtonAlign,
+    Message
 } from './Collections.styles';
 import { Button } from '../ActiveButton/Button';
 
@@ -22,14 +23,16 @@ export const Collections: React.FC<CollectionsProps> = ({ collections, onChoose 
         <CollectionsContainer>
             <Title>Choose your collection</Title>
             <ButtonsWrapper>
-                {collections.map((collection, index) => (
+                {collections.length === 0 ? (
+                    <Message>You do not have any collections yet</Message>
+                ) : (collections.map((collection, index) => (
                     <ButtonAlign key={collection.id} alignRight={index % 2 === 1}>
                         <Button
                             text={collection.name}
                             onClick={() => onChoose(collection.id)}
                         />
                     </ButtonAlign>
-                ))}
+                )))}
             </ButtonsWrapper>
         </CollectionsContainer>
     );
