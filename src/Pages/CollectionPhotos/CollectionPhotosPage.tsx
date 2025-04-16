@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useContext, useEffect, useMemo, useRef, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context';
-import { initPhotoAPI } from '../../Modules/API';
+import { getPhotoById } from '../../Modules/API';
 import { Photo } from '../../Modules/API/types';
 import { User, Collection } from '../../Modules/user/databaseTypes';
 import { Header } from '../../Components/Header/Header';
@@ -23,9 +23,12 @@ export const CollectionPhotosPage: React.FC = () => {
     const { userAPI, setUser } = useContext(AppContext);
     const [ photos, setPhotos ] = useState<Photo[]>([]);
     const [ collection, setCollection ] = useState<Collection | null>(null);
-    const photoAPI = initPhotoAPI(fetch);
+    const loadedRef = useRef(false);
+    const loadedCollectionRef = useRef(false);
 
     useEffect(() => {
+        if (loadedRef.current) return;
+
         const token = userAPI.restoreToken();
         if (!token) {
             navigate('/login');
@@ -35,7 +38,9 @@ export const CollectionPhotosPage: React.FC = () => {
         userAPI.getUserInfo(token)
             .then((user) => {
                 setUser(user);
-                const foundCollection = (user as User).collections.find(collection => collection._id === collectionId);
+                const foundCollection = (user as User).collections.find(
+                    (collection) => collection._id === collectionId
+                );
                 if (!foundCollection) {
                     navigate('/collections');
                     return;
@@ -43,15 +48,18 @@ export const CollectionPhotosPage: React.FC = () => {
                 setCollection(foundCollection);
             })
             .catch(() => navigate('/login'));
-    }, [collectionId, navigate, setUser, userAPI]);
+
+        loadedRef.current = true;
+    }, []);
 
     useEffect(() => {
+        if (loadedCollectionRef.current) return;
         if (!collection) return;
 
         const fetchPhotos = async () => {
             try {
                 const fetchedPhotos = await Promise.all(
-                    (collection as Collection).photosId.map(photoId => photoAPI.getPhotoById(Number(photoId)))
+                    (collection as Collection).photosId.map(photoId => getPhotoById(Number(photoId)))
                 );
                 setPhotos(fetchedPhotos);
             } catch (err) {
@@ -60,7 +68,8 @@ export const CollectionPhotosPage: React.FC = () => {
         };
 
         fetchPhotos();
-    }, [collection, photoAPI]);
+        loadedCollectionRef.current = true;
+    }, [collection]);
 
     if (!collection) return null;
 

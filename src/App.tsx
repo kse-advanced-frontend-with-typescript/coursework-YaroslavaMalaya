@@ -27,7 +27,7 @@ export const App: React.FC = () => {
                 .then(setUser)
                 .catch(console.error);
         }
-    }, [userAPI]);
+    }, []);
 
     return (
         <AppContext.Provider value={{ user, setUser, cleanUser, userAPI }}>

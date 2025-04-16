@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { initPhotoAPI } from '../../Modules/API';
+import { getPhotoById } from '../../Modules/API';
 import { PhotoDetails as PhotoDetailsType } from '../../Modules/API/types';
 import { Header } from '../../Components/Header/Header';
 import { BackNavigate } from '../../Components/BackNavigate/BackNavigate';
@@ -17,15 +17,16 @@ export const PhotoDetailsPage: React.FC = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [ photo, setPhoto ] = useState<PhotoDetailsType | null>(null);
-    const photoAPI = initPhotoAPI(fetch);
+    const fetchedOnceRef = useRef(false);
 
     useEffect(() => {
-        if (id) {
-            photoAPI.getPhotoById(Number(id))
+        if (id && !fetchedOnceRef.current) {
+            getPhotoById(Number(id))
                 .then(setPhoto)
                 .catch((err) => console.error('Failed to fetch photo details:', err));
+            fetchedOnceRef.current = true;
         }
-    }, [id, photoAPI]);
+    }, [id]);
 
     const handleAdd = () => {
         navigate(`/add-photo/${photo?.id.toString()}`);

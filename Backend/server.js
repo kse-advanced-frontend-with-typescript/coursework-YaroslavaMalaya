@@ -7,7 +7,7 @@ const { UserModel } = require('./user');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const PORT = 3015;
+const PORT = 3016;
 
 const API_KEY = 'JpmGPvNCVwkJgcwRlS81SzsDIe5qYDKK2KVQmVOXJ6yCOlBmJB2JprD9';
 const BASE_URL = 'https://api.pexels.com/v1';

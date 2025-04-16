@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context';
 import { User } from '../../Modules/user/databaseTypes';
@@ -16,8 +16,10 @@ import {
 export const CollectionsPage: React.FC = () => {
     const navigate = useNavigate();
     const { user, userAPI, setUser } = useContext(AppContext);
+    const loadedRef = useRef(false);
 
     useEffect(() => {
+        if (loadedRef.current) return;
         const token = userAPI.restoreToken();
         if (!token) {
             navigate('/login');
@@ -29,7 +31,9 @@ export const CollectionsPage: React.FC = () => {
                 setUser(user);
             })
             .catch(() => navigate('/login'));
-    }, [navigate, setUser, userAPI]);
+
+        loadedRef.current = true;
+    }, []);
 
     if (!user) return null;
 
