@@ -4,8 +4,8 @@ import { convertToType } from '../convertToType';
 const BASE_URL = 'http://localhost:3016/api';
 
 export const searchPhotos = async (query: string): Promise<Photo[]> => {
-    let allPhotos: Photo[] = [];
-    let page = 1;
+    const allPhotos: Photo[] = [];
+    const page = 1;
 
     const response = await fetch(`${BASE_URL}/search?query=${encodeURIComponent(query)}&per_page=80&page=${page}`);
 

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context';
 import { getPhotoById } from '../../Modules/API';
