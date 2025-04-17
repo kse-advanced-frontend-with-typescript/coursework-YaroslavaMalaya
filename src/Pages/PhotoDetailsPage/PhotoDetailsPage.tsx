@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getPhotoById } from '../../Modules/API';
+import { initPhotoAPI } from '../../Modules/API';
 import { PhotoDetails as PhotoDetailsType } from '../../Modules/API/types';
 import { Header } from '../../Components/Header/Header';
 import { BackNavigate } from '../../Components/BackNavigate/BackNavigate';
@@ -18,10 +18,11 @@ export const PhotoDetailsPage: React.FC = () => {
     const { id } = useParams();
     const [ photo, setPhoto ] = useState<PhotoDetailsType | null>(null);
     const fetchedOnceRef = useRef(false);
+    const api = initPhotoAPI(fetch);
 
     useEffect(() => {
         if (id && !fetchedOnceRef.current) {
-            getPhotoById(Number(id))
+            api.getPhotoById(Number(id))
                 .then(setPhoto)
                 .catch((err) => console.error('Failed to fetch photo details:', err));
             fetchedOnceRef.current = true;

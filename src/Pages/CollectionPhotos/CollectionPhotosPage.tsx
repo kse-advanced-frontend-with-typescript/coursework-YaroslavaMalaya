@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context';
-import { getPhotoById } from '../../Modules/API';
+import { initPhotoAPI } from '../../Modules/API';
 import { Photo } from '../../Modules/API/types';
 import { User, Collection } from '../../Modules/user/databaseTypes';
 import { Header } from '../../Components/Header/Header';
@@ -25,6 +25,7 @@ export const CollectionPhotosPage: React.FC = () => {
     const [ collection, setCollection ] = useState<Collection | null>(null);
     const loadedRef = useRef(false);
     const loadedCollectionRef = useRef(false);
+    const api = initPhotoAPI(fetch);
 
     useEffect(() => {
         if (loadedRef.current) return;
@@ -59,7 +60,7 @@ export const CollectionPhotosPage: React.FC = () => {
         const fetchPhotos = async () => {
             try {
                 const fetchedPhotos = await Promise.all(
-                    (collection as Collection).photosId.map(photoId => getPhotoById(Number(photoId)))
+                    (collection as Collection).photosId.map(photoId => api.getPhotoById(Number(photoId)))
                 );
                 setPhotos(fetchedPhotos);
             } catch (err) {

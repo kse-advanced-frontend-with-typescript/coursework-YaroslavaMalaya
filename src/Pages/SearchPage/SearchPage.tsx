@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { searchPhotos } from '../../Modules/API';
+import { initPhotoAPI } from '../../Modules/API';
 import { Photo } from '../../Modules/API/types';
 import { Header } from '../../Components/Header/Header';
 import { SearchInput } from '../../Components/SearchInput/SearchInput';
@@ -16,10 +16,11 @@ export const SearchPage: React.FC = () => {
     const [ photos, setPhotos ] = useState<Photo[]>([]);
     const [ selectedCategory, setSelectedCategory ] = useState<string | null>(null);
     const hasSearchedRef = useRef(false);
+    const api = initPhotoAPI(fetch);
 
     const handleSearch = async (query: string) => {
         try {
-            const results = await searchPhotos(query);
+            const results = await api.searchPhotos(query);
             setPhotos(results);
         } catch (error) {
             console.error('Search error:', error);

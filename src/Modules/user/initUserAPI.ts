@@ -3,7 +3,7 @@ import { User, UserSchema, Collection, CollectionSchema } from './databaseTypes'
 
 export const initUserAPI = (fetchAPI: typeof fetch) => {
     const TOKEN_KEY = 'token';
-    const BASE_URL = 'http://localhost:3016';
+    const BASE_URL = 'http://localhost:3020';
 
     const login = async (email: string, password: string): Promise<User> => {
         const res = await fetchAPI(`${BASE_URL}/login`, {
