@@ -1,6 +1,11 @@
 import React from 'react';
-import styles from './style.css';
+import { LogoTitle } from './Logo.style';
+import {useNavigate} from 'react-router-dom';
 
 export const Logo = ()=> {
-    return <div className={styles.logo}>Snaporia</div>;
+    const navigate = useNavigate();
+
+    return (
+        <LogoTitle onClick={() => navigate('/')}>Snaporia</LogoTitle>
+    );
 };

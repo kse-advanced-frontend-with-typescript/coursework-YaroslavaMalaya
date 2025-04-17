@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactDOM, {Container} from 'react-dom/client';
-import styles from './main.css';
+import ReactDOM from 'react-dom/client';
+import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
+import './main.css';
 
-const App: React.FC = () => {
-    const a: string = 'World!';
-    return <div className={styles.text}>Hello, world! {a}</div>;
-};
-
-const root = ReactDOM. createRoot (
-    document.getElementById('root') as Container
+const root = ReactDOM.createRoot(
+    document.getElementById('root')!
 );
-
-root.render(<App />);
+root.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);
